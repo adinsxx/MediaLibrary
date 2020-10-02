@@ -100,7 +100,9 @@ namespace MediaLibrary
                         movie.director = Console.ReadLine();
 
                         Console.WriteLine("Enter running time (h:m:s)");
-                        movie.runningTime = Console.ReadLine();
+                        string runTime = null;
+                        runTime = movie.runningTime.ToString(@"hh\:mm\:ss");
+                        Console.WriteLine(runTime);
 
                         
                         // add movie
