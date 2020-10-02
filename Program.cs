@@ -71,6 +71,7 @@ namespace MediaLibrary
                     Console.WriteLine("Enter movie title");
                     // input title
                     movie.title = Console.ReadLine();
+
                     // verify title is unique
                     if (movieFile.isUniqueTitle(movie.title)){
                         Console.WriteLine("Movie title is unique\n");
@@ -78,7 +79,6 @@ namespace MediaLibrary
                         string input;
                         do
                         {
-                            
                             // ask user to enter genre
                             Console.WriteLine("Enter genre (or done to quit)");
                             // input genre
@@ -95,6 +95,14 @@ namespace MediaLibrary
                         {
                             movie.genres.Add("(no genres listed)");
                         }
+                        
+                        Console.WriteLine("Enter Director name");
+                        movie.director = Console.ReadLine();
+
+                        Console.WriteLine("Enter running time (h:m:s)");
+                        movie.runningTime = Console.ReadLine();
+
+                        
                         // add movie
                         movieFile.AddMovie(movie);
                     }
