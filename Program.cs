@@ -1,6 +1,7 @@
 ﻿using System;
 using NLog.Web;
 using System.IO;
+using System.Linq;
 
 namespace MediaLibrary
 {
@@ -58,6 +59,7 @@ namespace MediaLibrary
                 // display choices to user
                 Console.WriteLine("1) Add Movie");
                 Console.WriteLine("2) Display All Movies");
+                Console.WriteLine("3) Find movie");
                 Console.WriteLine("Enter to quit");
                 // input selection
                 choice = Console.ReadLine();
@@ -73,7 +75,7 @@ namespace MediaLibrary
                     movie.title = Console.ReadLine();
 
                     // verify title is unique
-                    if (movieFile.isUniqueTitle(movie.title)){
+                    if ( movieFile.isUniqueTitle(movie.title)){
                         Console.WriteLine("Movie title is unique\n");
                         // input genres
                         string input;
@@ -116,7 +118,17 @@ namespace MediaLibrary
                         Console.WriteLine(m.Display());
                     }
                 }
-            } while (choice == "1" || choice == "2");
+
+                else if (choice == "3"){
+                    Console.WriteLine("Please enter the title of the movie");
+                    string userInput = Console.ReadLine();
+                    var movieSearch = movieFile.Movies.Where(m => m.title.Contains(userInput)).Select(m => m.title);
+                    Console.WriteLine($"There are {movieSearch.Count()} movies that match your entry:");
+                    foreach(string s in movieSearch){
+                        Console.WriteLine($"  {s}");
+                    }
+                }
+            } while (choice == "1" || choice == "2" || choice == "3");
 
             logger.Info("Program ended");
 
